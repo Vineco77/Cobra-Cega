@@ -179,20 +179,21 @@ const gameLoop = () => {
 
 gameLoop()
 
-document.addEventListener('keydown', ({ key }) => {
-    if (key == "ArrowRight" && direction != "left") {
-        direction = "right"
-    }  
-    if (key == "ArrowLeft" && direction != "right") {
-        direction = "left"
-    }  
-    if (key == "ArrowUp" && direction != "down") {
-        direction = "up"
-    }  
-    if (key == "ArrowDown" && direction != "up") {
-        direction = "down"
-    }  
-})
+
+function verificaDirecao(guide) {
+    if (guide == "direita" && direction != "left") {
+        return direction = "right"
+    }
+    if (guide == "esquerda" && direction != "right") {
+        return direction = "left"
+    }
+    if (guide == "cima" && direction != "down") {
+        return direction = "up"
+    }
+    if (guide == "baixo" && direction != "up") {
+        return direction = "down"
+    }
+}
 
 
 buttonPlay.addEventListener('click', () =>{
