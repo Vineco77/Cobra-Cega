@@ -12,12 +12,12 @@ window.SpeechRecognition =
 
   function onSpeak(e) {
     guide = e.results[0][0].transcript
-    exibeChuteNaTela(guide)
-    verificaDirecao(guide)
+    showVoiceToText(guide)
+    checkDirection(guide)
     console.log(guide);
   }
 
-  function exibeChuteNaTela(guide) {
+  function showVoiceToText(guide) {
     elementGuide.innerHTML = `<div class="said">Você disse:</div>
     <span class="box">${guide} </span>`
   }

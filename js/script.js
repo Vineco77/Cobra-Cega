@@ -187,7 +187,7 @@ const gameLoop = () => {
     }, 490);
 }
 
-function verificaDirecao(guide) {
+function checkDirection(guide) {
     if (guide == "direita" && direction != "left") {
         return direction = "right"
     }
