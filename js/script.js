@@ -5,14 +5,15 @@ const score = document.querySelector('.score--value')
 const finalScore = document.querySelector('.final-score > span')
 const menu = document.querySelector('.menu-screen')
 const buttonPlay = document.querySelector('.btn-play')
+const rainbow = document.querySelectorAll('.rainbow')
 
 const audio = new Audio('../assets/assets_audio.mp3')
+const rainbowItems = document.querySelectorAll('.rainbow')
 
 const size = 30
 
-const initialPosition = { x: 270, y: 240 }
+let snake = [{ x: 270, y: 270 }, { x: 300, y: 270 }, { x: 330, y: 270 }, { x: 360, y: 270 }, { x: 390, y: 270 }]
 
-let snake = [initialPosition]
 
 const IncrementScore = () => {
     score.innerText = +score.innerText + 10
@@ -57,7 +58,7 @@ const drawFood = () => {
 }
 
 const drawSnake = () => {
-    ctx.fillStyle = 'green'
+    ctx.fillStyle = '#3B6632'
 
     snake.forEach((position, index) => {
 
@@ -148,8 +149,17 @@ const checkCollision = () => {
 
     if (wallCollision || selfCollision) {
         gameOver()
+        controllersColors()
     }
 }
+
+const controllersColors = () => {
+    rainbowItems.forEach(item => {
+        item.style.backgroundColor = randomColor();
+    });
+}
+
+controllersColors()
 
 const gameOver = () => {
     direction = undefined
@@ -166,19 +176,16 @@ const gameLoop = () => {
     ctx.clearRect(0, 0, 600, 600)
     drawGrid()
     drawFood()
-    moveSnake()
     drawSnake()
+    moveSnake()
     checkEat()
     checkCollision()
 
 
    loopId = setTimeout(() => {
        gameLoop() 
-    }, 300);
+    }, 490);
 }
-
-gameLoop()
-
 
 function verificaDirecao(guide) {
     if (guide == "direita" && direction != "left") {
@@ -187,10 +194,10 @@ function verificaDirecao(guide) {
     if (guide == "esquerda" && direction != "right") {
         return direction = "left"
     }
-    if (guide == "cima" && direction != "down") {
+    if (guide == "sobe" && direction != "down") {
         return direction = "up"
     }
-    if (guide == "baixo" && direction != "up") {
+    if (guide == "para baixo" && direction != "up") {
         return direction = "down"
     }
 }
@@ -201,5 +208,7 @@ buttonPlay.addEventListener('click', () =>{
     menu.style.display = "none"
     canvas.style.filter = "none"
 
-    snake = [initialPosition]
+    snake = [{ x: 270, y: 270 }, { x: 300, y: 270 }, { x: 330, y: 270 }, { x: 360, y: 270 }, { x: 390, y: 270 }]
 })
+
+gameLoop()

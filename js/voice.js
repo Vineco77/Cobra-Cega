@@ -18,7 +18,7 @@ window.SpeechRecognition =
   }
 
   function exibeChuteNaTela(guide) {
-    elementGuide.innerHTML = `<div>Você disse:</div>
+    elementGuide.innerHTML = `<div class="said">Você disse:</div>
     <span class="box">${guide} </span>`
   }
 
